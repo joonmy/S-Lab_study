@@ -3,8 +3,8 @@
 #include <dirent.h>
 #include <string.h>
 #include <stdlib.h>
-#include <direct.h>
 char dpath[200] = "C:\\Users\\JunMung\\Desktop\\testplace\\";
+// /char dpath[200] = "C:\\Users\\JunMung\\Desktop\\mystudy\\21-2winter\\study\\TAR\\test\\";
 
 void copydir(char path[], char ddir[], char *filename) // (복사할 파일 위치, 붙여넣기 할 위치, 그 파일 이름)
 {
@@ -62,7 +62,7 @@ void finddir(DIR *dp, int layer, char path[], char ddir[])
             char s[30];
             strcpy(s, path);
             strcat(s, ep->d_name); //./ + subdir
-
+            //printf("%s", s);
             DIR *p = opendir(s);
             if (p != NULL)
             {
@@ -85,6 +85,7 @@ void finddir(DIR *dp, int layer, char path[], char ddir[])
 
                 mkdir(dir);
                 layer += 1;
+                //printf(" %s  => ", dir);
                 finddir(a, layer, s, dir);
                 layer -= 1;
             }
@@ -98,6 +99,7 @@ void finddir(DIR *dp, int layer, char path[], char ddir[])
                 char b[100];
                 strcpy(b, path);
                 strcat(b, ep->d_name);
+                //printf(" %s  => ", ddir);
                 copydir(b, ddir, ep->d_name);
             }
         }

@@ -28,7 +28,7 @@ void finddir(DIR *dp, int layer, char path[])
                 {
                     printf("    ");
                 }
-                printf("Directory : ");
+                //printf("Directory : ");
                 puts(ep->d_name);
                 layer += 1;
                 finddir(a, layer, s);
@@ -43,8 +43,8 @@ void finddir(DIR *dp, int layer, char path[])
                 char b[100];
                 strcpy(b, path);
                 strcat(b, ep->d_name);
-                printf(" -> %s  ", b);
-                printf("File : ");
+                //printf("%s  ", b);
+                //printf("File : ");
                 puts(ep->d_name);
             }
         }
@@ -58,6 +58,6 @@ void finddir(DIR *dp, int layer, char path[])
 int main(void)
 {
     DIR *dp;
-    char path[200] = "./";
+    char path[200] = "C:\\Users\\JunMung\\Desktop\\mystudy\\";
     finddir(dp, 0, path);
 }

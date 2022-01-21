@@ -23,18 +23,9 @@ int main()
     if (buffer[read - 1] == '\n')
     {
         buffer[read - 1] = 0;
-    }
+    };
 
-    int s = open(buffer, O_RDONLY);
-    if (s == -1)
-    {
-        printf("File doesn't exist\n");
-        exit(1);
-    }
-    else
-    {
-        sfile(buffer);
-    }
+    sfile(buffer);
     free(buffer);
     return 0;
 }
@@ -48,15 +39,16 @@ void sfile(char const filename[])
     {
         printf("Error Occurred\n");
     }
+    printf("%o", sfile.st_mode);
 
-    //Accessing data members of stat struct
-    printf("\nFile st_uid %d \n", sfile.st_uid);
-    if (S_ISREG(sfile.st_mode))
+    printf("  %o", sfile.st_mode & S_IFMT);
+    switch (sfile.st_mode & S_IFMT)
     {
-        printf("regular file");
-    }
-    else
-    {
-        printf("not regular file");
+    case S_IFREG:
+        puts("regular\n");
+        break;
+    case S_IFDIR:
+        puts("directory\n");
+        break;
     }
 }

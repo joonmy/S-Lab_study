@@ -30,12 +30,14 @@ int main()
     }
 
     result = fread(buffer, 1, lSize, fp);
+    printf("==%d==", result);
     if (result != lSize)
     {
         fputs("Reading error", stderr);
         return 0;
         //exit(3);
     }
+    //fwrite(buffer,1,lSize,fp);
 
     for (int i = 1; i <= lSize; i++)
     {
